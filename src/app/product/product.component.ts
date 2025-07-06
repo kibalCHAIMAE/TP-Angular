@@ -8,10 +8,10 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css',
-  standalone:true,
+  standalone: true,
 })
 export class ProductComponent {
-  products: any[] = [];
+  products: Product[] = [];
 
   constructor(private productService: ProductService) {}
 
@@ -21,9 +21,9 @@ export class ProductComponent {
 
   getAllProducts(): void {
     this.productService.getAllProducts().subscribe(
-      (data) => {
-        this.products = data;
-        console.log(data);
+      (products) => { // ✅ on reçoit déjà le tableau
+        this.products = products;
+        console.log(this.products);
       },
       (error) => {
         console.error('Error fetching products:', error);
@@ -31,9 +31,9 @@ export class ProductComponent {
     );
   }
 
-  handelDelete(product: any): void {
-    let v = confirm("Êtes-vous sûr de vouloir supprimer ce produit ?");
-    if (v === true) {
+  handelDelete(product: Product): void {
+    const confirmed = confirm('Êtes-vous sûr de vouloir supprimer ce produit ?');
+    if (confirmed) {
       this.productService.deleteProduct(product.id).subscribe(
         () => {
           this.getAllProducts();
@@ -44,5 +44,4 @@ export class ProductComponent {
       );
     }
   }
-
 }

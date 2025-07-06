@@ -1,8 +1,7 @@
 export interface Product {
     id: number,
     name: String,
-    price: number,
+    currentPrice: number,
     quantity: number,
     selected: boolean
-
 }

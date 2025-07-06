@@ -1,2 +1,5 @@
-/* src/styles.css */
-@import "bootstrap/dist/css/bootstrap.min.css"; /* Bootstrap CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Vos autres styles globaux peuvent aller ici */
